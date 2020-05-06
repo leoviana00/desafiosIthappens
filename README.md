@@ -29,10 +29,12 @@ tarefa);
  
  - Salvar release em Registry (salve no DockerHub);
  
- - Deploy (Faça o deploy usando Ansible e módulo dócker para a sua máquina pessoal
+ - Deploy (Faça o deploy usando Ansible e módulo docker para a sua máquina pessoal
 mesmo);
 
 Restrições:
 Porta: 8080;
 Limite de memória: 1GB;
 Limite de CPU: 1 Core.
+
+
