@@ -16,20 +16,20 @@ Dockerfile com uma instalação de Jenkins que contemple o Docker e Maven);
 
 6. Construir o pipeline no modelo Groovy file no Jenkins com as etapas:
 
- 6.1 Pull do Git (do repositório do gitlab que você colocou o código fonte da parte 1 dessa
+ - Pull do Git (do repositório do gitlab que você colocou o código fonte da parte 1 dessa
 tarefa);
 
- 6.2 Build com Maven;
+ - Build com Maven;
  
- 6.3 Teste (rode os testes com o maven);
+ - Teste (rode os testes com o maven);
  
- 6.4 SonarQube;
+ - SonarQube;
  
- 6.5 Dockerização (ver como dockerização aplicação Spring em ​ link​ );
+ - Dockerização (ver como dockerização aplicação Spring em ​ link​ );
  
- 6.6 Salvar release em Registry (salve no DockerHub);
+ - Salvar release em Registry (salve no DockerHub);
  
- 6.7 Deploy (Faça o deploy usando Ansible e módulo dócker para a sua máquina pessoal
+ - Deploy (Faça o deploy usando Ansible e módulo dócker para a sua máquina pessoal
 mesmo);
 
 Restrições:
