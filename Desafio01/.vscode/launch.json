@@ -1,0 +1,72 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - soma2",
+            "request": "launch",
+            "mainClass": "com.desafioih.leoviana.demo.soma2",
+            "projectName": "demo"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - soma",
+            "request": "launch",
+            "mainClass": "soma",
+            "projectName": "demo"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - soma",
+            "request": "launch",
+            "mainClass": "com.desafioih.leoviana.demo.soma",
+            "projectName": "demo"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SomaNum",
+            "request": "launch",
+            "mainClass": "com.desafioih.leoviana.demo.SomaNum",
+            "projectName": "demo"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DesafioApplication<demo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.desafioih.leoviana.demo.DesafioApplication",
+            "projectName": "desafio01",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SomaNum<demo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.desafioih.leoviana.SomaNum",
+            "projectName": "demo",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DesafioApplication<demo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.desafioih.leoviana.DesafioApplication",
+            "projectName": "demo",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DesafioApplication<demo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.desafioih.leoviana.demo.DesafioApplication",
+            "projectName": "demo",
+            "args": ""
+        }
+    ]
+}
