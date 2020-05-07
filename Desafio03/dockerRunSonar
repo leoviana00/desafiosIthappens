@@ -1,0 +1,20 @@
+#Criação de volume
+docker volume create sonar_data
+docker volume create sonar_conf
+docker volume create sonar_logs
+docker volume create sonar_extensions
+
+
+#Listar o volume
+docker volume ls
+
+#Criação do container
+docker run -d \
+--name sonar-desafio \
+--restart always \
+-p 9000:9000 \
+-v sonar_data:/opt/sonarqube/data \
+-v sonar_conf:/opt/sonarqube/conf \
+-v sonar_logd:/opt/sonarqube/logs \
+-v sonar_extensions:/opt/sonarqube/extensions \
+sonarqube:latest

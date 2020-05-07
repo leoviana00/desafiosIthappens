@@ -1,0 +1,44 @@
+
+FROM jenkins/jenkins:lts
+LABEL maintainer = "leonardoviana00@hotmail.com"
+
+USER root
+
+#Pré requisitos para configuração
+RUN apt-get update && \
+    apt-get -y install apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg2 \
+    software-properties-common 
+
+#Repositório docker
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
+    apt-key fingerprint 0EBFCD88 && \
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" 
+    
+#Instalação do docker    
+RUN apt-get update && \
+    apt-get install -y docker-ce
+
+#Instalação do git e jdk-8
+RUN apt-get update && \
+    apt-get install -y git openjdk-8-jdk
+
+#Instalação do maven
+RUN apt-get update && \
+    apt-get install -y maven
+
+#Dar permissões ao usuário jenkins
+RUN usermod -a -G docker jenkins 
+    
+#Pasta para backup do Jenkins
+RUN mkdir /srv/backup && chown jenkins:jenkins /srv/backup
+    
+# Copiando o arquivo de plugins para ser instalado automaticamente
+USER jenkins
+COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
+
+#Variáveis de ambiente do jdk
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
