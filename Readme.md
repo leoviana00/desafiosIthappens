@@ -1,6 +1,6 @@
 # Tarefas do desafio referente aos módulos 1 e 2 do curso de DevOps da It Happens
 
-Desafios do curso de DevOPs da It Happens
+###Desafios do curso de DevOPs da It Happens
 
 1. Criar um Hello Word em Spring Framework e criar uma classe de teste com Junit para
 testar 1 + 1 = 2. Configure também o Jacoco no projeto para se comunicar com o
