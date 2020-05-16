@@ -1,0 +1,30 @@
+---
+- hosts: servidores_web
+  tasks:
+  - name: Create destination directory
+    file: path=/home/leoviana/app-container state=directory owner=leoviana group=leoviana mode=0775 recurse=yes
+    become: yes
+
+  - name: Copy Dockerfile and other files to server
+    copy: src={{ item }} dest=/home/leoviana/app-container mode=0775
+    with_items:
+      - target/demo-0.0.1-SNAPSHOT.war 
+      - site/Dockerfile
+      
+  - name: Remove container if already running
+    become: yes
+    command: docker rm -f app-prod
+    ignore_errors: yes
+
+  - name: Remove previous image
+    become: yes
+    command: docker rmi -f leoviana00/desafio_prod
+    ignore_errors: yes
+
+  - name: Build image
+    become: yes
+    command: docker build -t leoviana00/desafio_prod /home/leoviana/app-container/
+
+  - name: Create container
+    become: yes
+    command: docker run -i -d -p 8008:8080 --name app-prod -t leoviana00/desafio_prod

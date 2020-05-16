@@ -1,0 +1,10 @@
+version: "3"
+services:
+    springapp: 
+        container_name: app-homologacao
+        image: localhost:5000/desafio_prod
+        ports: 
+            - 8004:8080
+        environment:
+          - TOMCAT_USERNAME=admin
+          - TOMCAT_PASSWORD=Info.123
