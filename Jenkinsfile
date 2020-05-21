@@ -55,7 +55,7 @@ pipeline {
         stage ('Docker Push'){
             steps{
                 
-                sh 'docker image tag leoviana00/desafio_prod localhost:5000/desafio_prod'
+                sh 'docker image tag leoviana00/desafio_prod 192.168.1.12:5000/desafio_prod'
                 sh 'docker push leoviana00/desafio_prod'
             }
         }
@@ -69,7 +69,7 @@ pipeline {
 
         stage ('Deploy com Ansible'){
             steps{
-                sh 'ansible-playbook -i hosts docker-image.yml'
+                sh 'ansible-playbook -i hosts playbook.yml'
             }
         }
 

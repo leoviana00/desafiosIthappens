@@ -1,0 +1,13 @@
+create_containers: 1
+default_container_name: app-prod1
+default_container_image: leoviana00/desafio_prod
+default_container_command: sleep 1d
+packages: 
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+        - python3-pip
+        - virtualenv
+        - python3-setuptools
+

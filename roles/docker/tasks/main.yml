@@ -1,0 +1,54 @@
+---
+# tasks file for docker
+    
+- name: Instalando dependências do Docker e Pip
+  apt:      
+    name: "{{ docker__package_dependencies + docker__pip_dependencies }}"  
+
+- name: Adicione a chave pública GPG do Docker ao chaveiro APT
+  apt_key:
+    id: "{{ docker__apt_key_id }}"
+    url: "{{ docker__apt_key_url }}"
+
+- name: Adicionar o repositório Docker
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+
+- name: Configurar o repositório APT upstream do Docker
+  apt_repository:
+    repo: "{{ docker__apt_repository }}"
+
+- name: Install Docker
+  apt:
+    name: "docker-{{ docker__edition }}"
+    state: "{{ docker__state }}" 
+  notify:
+    - Restart Docker
+
+- name: Install Python packages
+  pip:
+    name: docker
+    state: present
+
+- name: Criar containers
+  docker_container:
+    name: "{{ default_container_name}}"
+    image: "{{ default_container_image }}"
+    command: "{{ default_container_command }}"
+    recreate: yes
+    restart_policy: always
+#   cpuset_cpus:
+#       - "{{ MAX_CPU }}"
+#   memory: 
+#       - 512M   
+    ports:
+        - "{{ PORT }}:{{ APP_PORT }}"
+    exposed_ports:
+        - "{{ PORT }}"
+    state: started
+  with_sequence: count={{ create_containers }}  
+
+- name: Check if container is running
+  shell: docker ps
+...  

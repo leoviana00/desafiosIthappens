@@ -1,0 +1,11 @@
+--- 
+
+- name: Default PLaybook - Starting Deploy
+  hosts: www 
+  become_method: sudo
+  become: true
+ 
+  roles: 
+   # - common
+     - docker
+...

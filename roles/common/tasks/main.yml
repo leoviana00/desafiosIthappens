@@ -1,0 +1,6 @@
+---
+- name: Atualização do Sistema Operacional
+  apt: 
+    update_cache: yes
+
+...
