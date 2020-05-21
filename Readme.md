@@ -72,8 +72,28 @@ Limite de CPU: 1 Core.
 
 9. Deploy em ambiente de produção com Ansible
 
-  sh 'ansible-playbook -i hosts docker-image.yml'
+  sh 'ansible-playbook -i hosts playbook.yml'
 
 10. Publicação dos testes unitários
 
+# Ansible
+
+1. hosts
+2. playbook.yml
+3. roles
+3.1. docker
+3.1.1. tasks    - main.yml
+3.1.2. vars     - main.yml 
+3.1.3. handlers - main.yml
+
+
+# TASKS
+
+- INSTALAÇÃO DAS DEPENDÊNCIAS DO DOCKER E PIP
+- ADICIONANDO CHAVE PÚBLICA GPG DO DOCKER AO CHAVEIRO APT
+- ADICIONANDO REPOSITÓRIO DOCKER
+- CONFIGURAÇÃO DO REPOSITÓRIO
+- INSTALAÇÃO DO DOCKER
+- INSTALAÇÃO PACOTES PYTHON
+- CRIAÇÃO DOS CONTAINERS
 
