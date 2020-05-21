@@ -4,7 +4,7 @@
 
 1. Criar um Hello Word em Spring Framework e criar uma classe de teste com Junit para
 testar 1 + 1 = 2. Configure também o Jacoco no projeto para se comunicar com o
-SonarQube no futuro (Ler esse ​ tutorial​ );
+SonarQube no futuro;
 
 2. Instalar o Jenkins utilizando Docker com volume, para garantir persistência (Monte um
 Dockerfile com uma instalação de Jenkins que contemple o Docker e Maven);
@@ -37,6 +37,63 @@ Restrições:
 Porta: 8080;
 Limite de memória: 1GB;
 Limite de CPU: 1 Core.
+
+# Desafio 02
+
+- Dockerfile (Jenkins, Maven e Docker)
+- plugins.sh (Plugins para instalação de forma automatizada)
+- Criação de volumes para persistência dos dados
+
+docker volume create jenkins_home
+  
+- Criação de containers
+
+docker run -d --name jenkins-desafio --restart always --hostname jenkins.desafio.com  -p 8282:8080 -p 50000:50000 \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v jenkins_home:/var/jenkins_home \
+leoviana00/desafio02:0.4.0
+
+# Desafio 03 - SONARQUBE
+
+- Criação de volume
+
+docker volume create sonar_data
+docker volume create sonar_conf
+docker volume create sonar_logs
+docker volume create sonar_extensions
+
+- Criar container
+
+docker run -d \
+--name sonar-desafio \
+--hostname sonar.desafio.com \
+--restart always \
+--link jenkins-desafio \
+-p 9000:9000 \
+-v sonar_data:/opt/sonarqube/data \
+-v sonar_conf:/opt/sonarqube/conf \
+-v sonar_logs:/opt/sonarqube/logs \
+-v sonar_extensions:/opt/sonarqube/extensions \
+sonarqube:latest
+
+OBS: Instalar no Jenkins Plugin: SonarQube Scanner for Jenkins para integração
+
+# Desafio 04 - GITLAB
+
+- Criação de volumes
+
+docker volume create gitlab_config
+docker volume create gitlab_logs
+docker volume create gitlab_data
+
+- Criar container
+
+docker run -d \
+ -p 443:443 -p 80:80 -p 2022:22 --hostname gitlab.desafio.com --link jenkins.desafio.com --name gitlab-desafio --restart always \
+ -v gitlab_config:/etc/gitlab \
+ -v gitlab_logs:/var/log/gitlab \
+ -v gitlab_data:/var/opt/gitlab \
+ gitlab/gitlab-ce:latest
 
 # PIPELINE - ITEM 6
 
