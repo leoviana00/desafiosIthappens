@@ -47,7 +47,7 @@ pipeline {
             steps{
 
                 sh 'docker rmi -f leoviana00/desafio_prod'
-                sh 'docker build -t leoviana00/desafio_prod .'
+                sh 'docker build -t desafio_prod .'
                 
             }
         }
@@ -55,8 +55,8 @@ pipeline {
         stage ('Docker Push'){
             steps{
                 
-                sh 'docker image tag leoviana00/desafio_prod 192.168.1.12:5000/desafio_prod'
-                sh 'docker push leoviana00/desafio_prod'
+                sh 'docker image tag desafio_prod 172.17.0.5:5000/desafio_prod'
+                sh 'docker push 172.17.0.5:5000/desafio_prod'
             }
         }
 
