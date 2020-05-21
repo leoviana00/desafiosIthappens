@@ -49,6 +49,6 @@
     state: started
   with_sequence: count={{ create_containers }}  
 
-- name: Check if container is running
+- name: Verificar se os containes estão rodando
   shell: docker ps
 ...  
