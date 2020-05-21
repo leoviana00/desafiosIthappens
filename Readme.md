@@ -95,7 +95,9 @@ docker run -d \
  -v gitlab_data:/var/opt/gitlab \
  gitlab/gitlab-ce:latest
 
-# PIPELINE - ITEM 6
+# Desafio 05 - Integrar Jenkins - Gitlab - Sonar
+
+# Desafio 06 - Construção Pipeline
 
 1. Realizar o pull do projeto
 
