@@ -2,7 +2,7 @@ version: "3"
 services:
     springapp: 
         container_name: app-homologacao
-        image: 172.17.0.5:5000/desafio_prod
+        image: desafio_prod
         ports: 
             - 8004:8080
         environment:
