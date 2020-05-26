@@ -16,6 +16,7 @@ docker__package_dependencies:
   - "ca-certificates"
   - "cron"
   - "gnupg2"
+  - "curl"
   - "software-properties-common"
 
 #pip packages
@@ -30,13 +31,13 @@ docker__pip_packages: []
 
 create_containers: 1
 default_container_name: app_docker-desafio
-default_container_image: leoviana00/desafio_prod
+default_container_image: 172.17.0.5:5000/desafio_prod
 default_container_command: sleep 1d
 
 MAX_CPU: 1
-MAX_MEMORY: 1024 M 
-PORT: 8080
-APP_PORT: 8080
+MAX_MEMORY: 1024m
+PORT: "8080"
+APP_PORT: "8080"
 
 
 # Verão Docker

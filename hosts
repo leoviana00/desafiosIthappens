@@ -1,10 +1,13 @@
 [servidores_web]
-www   ansible_ssh_host=192.168.1.12   ansible_ssh_user=leoviana ansible_ssh_private_key_file=/var/jenkins_home/.ssh/id_rsa
-#mysql ansible_ssh_host=192.168.254.12 ansible_ssh_user=ansible  ansible_ssh_pass=Info.123 
+  www    ansible_ssh_host=10.0.0.103           ansible_ssh_user=leoviana    ansible_ssh_private_key_file=/var/jenkins_home/.ssh/id_rsa
+# mysql ansible_ssh_host=192.168.254.12  ansible_ssh_user=ansible      ansible_ssh_private_key_file=/var/jenkins_home/.ssh/id_rsa
 
 [servidores_web:vars]
-ansible_python_interpreter=/usr/bin/python
+ansible_python_interpreter=/usr/bin/python3
+
 ansible_become=yes
 ansible_become_method=sudo
 ansible_become_user=root
 ansible_become_pass=Info.123
+
+
