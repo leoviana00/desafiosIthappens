@@ -4,7 +4,7 @@
 
 1. Criar um Hello Word em Spring Framework e criar uma classe de teste com Junit para
 testar 1 + 1 = 2. Configure também o Jacoco no projeto para se comunicar com o
-SonarQube no futuro (Ler esse ​ tutorial​ );
+SonarQube no futuro;
 
 2. Instalar o Jenkins utilizando Docker com volume, para garantir persistência (Monte um
 Dockerfile com uma instalação de Jenkins que contemple o Docker e Maven);
@@ -38,7 +38,102 @@ Porta: 8080;
 Limite de memória: 1GB;
 Limite de CPU: 1 Core.
 
-# PIPELINE - ITEM 6
+# Desafio 1
+
+- A base foi criada utilizando o site https://start.spring.io/
+
+Project: Maven
+Language: Java
+Springboot: 2.3.0
+Packaging: war
+Dependências: Spring Web
+
+Adicionado o pligin do jacoco no pom:
+<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<!-- attached to Maven test phase -->
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+
+			</plugin>
+   
+# Desafio - 2
+
+- Craido Dockerfile:
+
+- Criar volumes:
+  docker volume create jenkins_home
+
+- Build da imagem:
+  docker build -t leoviana00/desafio02:0.4.0 .
+  
+- Criar container:
+  docker run -d --name jenkins-desafio --restart always --hostname jenkins.desafio.com  -p 8282:8080 -p 50000:50000 \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v jenkins_home:/var/jenkins_home \
+  leoviana00/desafio02:0.4.0
+
+Plugins: 
+ - SonarQube Scanner
+ - SonarQuality Gates
+ - Pipeline
+ 
+# Desafio - 3
+
+- Criar volumes:
+  docker volume create sonar_data
+  docker volume create sonar_conf
+  docker volume create sonar_logs
+  docker volume create sonar_extensions
+  
+- Criação do container:
+  docker run -d \
+--name sonar-desafio \
+--hostname sonar.desafio.com \
+--restart always \
+--link jenkins-desafio \
+-p 9000:9000 \
+-v sonar_data:/opt/sonarqube/data \
+-v sonar_conf:/opt/sonarqube/conf \
+-v sonar_logs:/opt/sonarqube/logs \
+-v sonar_extensions:/opt/sonarqube/extensions \
+sonarqube:latest
+
+# Desafio - 4
+
+- Criação de volumes:
+  docker volume create gitlab_config
+  docker volume create gitlab_logs
+  docker volume create gitlab_data
+
+- Criação do container:
+  docker run -d \
+ -p 443:443 -p 80:80 -p 2022:22 --hostname gitlab.desafio.com --link jenkins.desafio.com --name gitlab-desafio --restart always \
+ -v gitlab_config:/etc/gitlab \
+ -v gitlab_logs:/var/log/gitlab \
+ -v gitlab_data:/var/opt/gitlab \
+ gitlab/gitlab-ce:latest
+
+# Desafio - 5
+- Integrar Jenkins | Sonar | Gitlab
+
+# Desafio - 6
+
+- Criar um Jenkinsfile com os estágios:
 
 1. Realizar o pull do projeto
 
@@ -46,7 +141,7 @@ Limite de CPU: 1 Core.
 
 2. Realizar Build com o Maven
 
-  sh 'mvn clean package' 
+  sh 'mvn clean package -DskipTests=true' 
 
 3. Realizar os testes com o Maven
 
@@ -58,13 +153,14 @@ Limite de CPU: 1 Core.
 
 6. Docker Build
 
-  sh 'docker rmi -f leoviana00/desafio_prod'
-  sh 'docker build -t leoviana00/desafio_prod .'
+  sh 'docker rmi -f desafio_prod'
+  sh 'docker build -t desafio_prod .'
 
 7. Docker Push
 
-  sh 'docker image tag leoviana00/desafio_prod localhost:5000/desafio_prod'
-  sh 'docker push leoviana00/desafio_prod'
+  sh 'docker rmi -f 172.17.0.5:5000/desafio_prod'
+  sh 'docker image tag desafio_prod 172.17.0.5:5000/desafio_prod'
+  sh 'docker push 172.17.0.5:5000/desafio_prod'
 
 8. Deploy em ambiente de Homologação
 
