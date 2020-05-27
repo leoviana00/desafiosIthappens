@@ -43,12 +43,17 @@ Limite de CPU: 1 Core.
 - A base foi criada utilizando o site https://start.spring.io/
 
 Project: Maven
+
 Language: Java
+
 Springboot: 2.3.0
+
 Packaging: war
+
 Dependências: Spring Web
 
 Adicionado o pligin do jacoco no pom:
+
 <plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
