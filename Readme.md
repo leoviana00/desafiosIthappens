@@ -52,20 +52,27 @@ Packaging: war
 
 Dependências: Spring Web
 
-Adicionado o pligin do jacoco no pom:
+Adicionado o plugin do jacoco no pom:
    
 # Desafio - 2
 
 - Craido Dockerfile:
 
 - Criar volumes:
+
   docker volume create jenkins_home
 
 - Build da imagem:
+
   docker build -t leoviana00/desafio02:0.4.0 .
   
 - Criar container:
-  docker run -d --name jenkins-desafio --restart always --hostname jenkins.desafio.com  -p 8282:8080 -p 50000:50000 \
+
+  docker run -d \
+  --name jenkins-desafio \
+  --restart always \
+  --hostname jenkins.desafio.com \ 
+  -p 8282:8080 -p 50000:50000 \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v jenkins_home:/var/jenkins_home \
   leoviana00/desafio02:0.4.0
@@ -78,12 +85,14 @@ Plugins:
 # Desafio - 3
 
 - Criar volumes:
+
   docker volume create sonar_data
   docker volume create sonar_conf
   docker volume create sonar_logs
   docker volume create sonar_extensions
   
 - Criação do container:
+
   docker run -d \
 --name sonar-desafio \
 --hostname sonar.desafio.com \
@@ -99,19 +108,26 @@ sonarqube:latest
 # Desafio - 4
 
 - Criação de volumes:
+
   docker volume create gitlab_config
   docker volume create gitlab_logs
   docker volume create gitlab_data
 
 - Criação do container:
+
   docker run -d \
- -p 443:443 -p 80:80 -p 2022:22 --hostname gitlab.desafio.com --link jenkins.desafio.com --name gitlab-desafio --restart always \
+ -p 443:443 -p 80:80 -p 2022:22 \
+ --hostname gitlab.desafio.com \
+ --link jenkins.desafio.com \
+ --name gitlab-desafio \
+ --restart always \
  -v gitlab_config:/etc/gitlab \
  -v gitlab_logs:/var/log/gitlab \
  -v gitlab_data:/var/opt/gitlab \
  gitlab/gitlab-ce:latest
 
 # Desafio - 5
+
 - Integrar Jenkins | Sonar | Gitlab
 
 # Desafio - 6
@@ -160,9 +176,12 @@ sonarqube:latest
 1. hosts
 2. playbook.yml
 3. roles
-3.1. docker
+3.1. docker 
+
 3.1.1. tasks    - main.yml
-3.1.2. vars     - main.yml 
+
+3.1.2. vars     - main.yml
+
 3.1.3. handlers - main.yml
 
 
