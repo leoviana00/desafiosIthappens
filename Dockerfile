@@ -1,3 +1,13 @@
+#---------------------------------------------------------------
+# Informação
+# autor: Leonardo Viana Pereira
+# email: leonardo.viana@armateus.com.br
+# version: 0.1.0
+# Descrição: Dockerizando a aplicação
+# Desafio do Curso de DevOps | Ithappens - Referente aos módulos 1 e 2
+#---------------------------------------------------------------
+#
+
 FROM tomcat:8.5.50-jdk8-openjdk
 LABEL maintainer "leonardoviana00@hotmail.com"
 RUN apt-get update &&\
