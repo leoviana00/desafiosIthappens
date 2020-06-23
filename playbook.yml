@@ -1,4 +1,13 @@
 --- 
+#---------------------------------------------------------------
+# Informação
+# autor: Leonardo Viana Pereira
+# email: leonardo.viana@armateus.com.br
+# version: 0.1.0
+# Descrição: Instalação, configuração e deploy usando o módulo docker
+# Desafio do Curso de DevOps | Ithappens - Referente aos módulos 1 e 2
+#---------------------------------------------------------------
+#
 
 - name: Default PLaybook - Starting Deploy
   hosts: all
