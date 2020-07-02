@@ -1,3 +1,7 @@
+## Modelagem do ambiente 
+
+![](/imagens/desafio1.jpeg)
+
 # Tarefas do desafio referente aos módulos 1 e 2 do curso de DevOps da It Happens
 
 ### Desafios do curso de DevOPs da It Happens
