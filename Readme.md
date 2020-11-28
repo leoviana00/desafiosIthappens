@@ -36,12 +36,12 @@ tarefa);
  
  - Deploy (Faça o deploy usando Ansible e módulo docker para a sua máquina pessoal
 mesmo);
-
+```
 Restrições:
 Porta: 8080;
 Limite de memória: 1GB;
 Limite de CPU: 1 Core.
-
+```
 # Desafio 1
 
 - A base foi criada utilizando o site https://start.spring.io/
